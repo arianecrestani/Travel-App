@@ -1,4 +1,4 @@
-# WeatherJournalApp
+# Travelapp
 
 Weather Journal App helps you track your day and the weather forecast
 
