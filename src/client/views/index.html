@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Travel App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="holderHeadline">TrevelApp</div>
+      <div class="holder zip">
+        <label for="zip"></label>
+        <input type="text" id="zip" placeholder="Enter zip code here" />
+      </div>
+      <div class="holder feel">
+        <label for="feelings"></label>
+        <textarea
+          class="myInput"
+          id="feelings"
+          placeholder="How are you feeling today?"
+          rows="9"
+          cols="50"
+        ></textarea>
+        <button id="generate" type="submit">Generate</button>
+      </div>
+      <div class="holder entry">
+        <div class="icon" id="icon">
+          <img src="svg/unknown.svg" alt="nothing yet" />
+        </div>
+        <div class="title"></div>
+        <div id="entryHolder">
+          <div id="date"></div>
+          <div id="temp"></div>
+          <div id="status"></div>
+          <div id="location"></div>
+          <div id="content"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+         // Check that service workers are supported
+         if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+    </script>
+  </body>
+</html>
