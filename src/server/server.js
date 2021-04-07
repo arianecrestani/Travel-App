@@ -1,32 +1,33 @@
+//dependecias
+
+
 const { request } = require("express");
 
-function createExpressApp() {
-  // Express to run server and routes
-  const express = require("express");
-  // Start up an instance of app
-  const app = express();
-  /* Dependencies */
-  const bodyParser = require("body-parser");
-  /* Middleware*/
 
+const createExpressApp = () => {
+    const dotenv = require('dotenv');
+    const express = require('express')
+    const cors = require("cors");
+    const app = express()
+  
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
 
+    app.use(express.static('dist'))
+    app.use(cors());
 
-
-
-
-  //Here we are configuring express to use body-parser as middle-ware.
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  // Cors for cross origin allowance
-  const cors = require("cors");
-  app.use(cors());
-  // Initialize the main project folder
-  app.use(express.static("website"));
-
-  return app;
+    console.log(__dirname)
+    return app;
 }
+const app = createExpressApp();
+dotenv.config();
 
-//entrada e saida do servidor (routes)
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html');
+})
+
+//criar rota
+
 function setupEndPoint(app) {
   let projectData = {};
   // Respond with JS object when a GET request is made to the homepage
@@ -41,11 +42,6 @@ function setupEndPoint(app) {
     console.log(projectData);
   });
 }
-
-
-
-
-
 
 function listening() {
   console.log(server);
