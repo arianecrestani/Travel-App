@@ -1,9 +1,9 @@
 /* Global Variables */
 
 // pegando os elementos do html
-const generate = document.getElementById("generate");
-const textArea = document.getElementById("feelings");
-const zipcode = document.getElementById("zip");
+const generate = document.getElementById("clickSearch");
+const date = document.getElementById("inputDate");
+const destinationCity = document.getElementById("destination");
 
 // Create a new date instance dynamically with JS
 let dt = new Date();
@@ -12,7 +12,7 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 /* Function called by event */
 const generateButtonClick = () => {
-  getOpenWeatherTemperature(zipcode.value)
+  getGeonames(destinationCity.value)
     .then((wheatherData) => postData(createDataJson(wheatherData)))
     .then(() => getServerData())
     .then((serverData) => updateUI(serverData));
@@ -35,12 +35,11 @@ generate.addEventListener("click", generateButtonClick);
 
 /* Function to GET Web API Data*/
 
-const getOpenWeatherTemperature = async (zipcode) => {
-  const baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
-  const apiKey = "96516fe8a09b3dba396ec9ffdb642eac";
-  //o que divide os dois paramentros é o & comercial
-  //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-  return await fetch(`${baseUrl}zip=${zipcode},de&appid=${apiKey}&units=metric`)
+const getGeonames = async (destinationCity) => {
+  const baseUrl = "api.geonames.org/postalCodeSearchJSON?placename=austria&username=ariane&postalcode_startsWith	=0";
+  const apiKey = "geoname_Api"
+ 
+  return await fetch(`${baseUrl}placename=${destinationCity},&username=${apiKey}&postalcode_startsWith	=0`)
     .then((response) => response.json())
     .catch((error) => console.log(error)); // continuacao de criando uma URL
 };
