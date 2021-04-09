@@ -3,7 +3,7 @@
 // pegando os elementos do html
 const generate = document.getElementById("clickSearch");
 const date = document.getElementById("inputDate");
-const destinationCity = document.getElementById("destination");
+const destination = document.getElementById("destination");
 
 // Create a new date instance dynamically with JS
 let dt = new Date();
@@ -12,55 +12,16 @@ let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 /* Function called by event */
 const generateButtonClick = () => {
-  getGeonames(destinationCity.value)
+  getGeonames(destination.value)
     .then((wheatherData) => postData(createDataJson(wheatherData)))
     .then(() => getServerData())
-    .then((serverData) => updateUI(serverData));
+    .then((projectData) => response.send(projectData));
 };
 
-const createDataJson = (data) => {
-  return {
-    //criando as info (json) para o servidor
-    icon: data.weather[0].icon,
-    date: newDate,
-    temperature: Math.floor(data.main.temp),
-    status: data.weather[0].main,
-    city: data.name,
-    feelings: textArea.value,
-  };
-};
-
-// Event listener to add function to existing HTML DOM element
 generate.addEventListener("click", generateButtonClick);
 
-/* Function to GET Web API Data*/
-
-const getGeonames = async (destinationCity) => {
-  const baseUrl = "api.geonames.org/postalCodeSearchJSON?placename=austria&username=ariane&postalcode_startsWith	=0";
-  const apiKey = "geoname_Api"
- 
-  return await fetch(`${baseUrl}placename=${destinationCity},&username=${apiKey}&postalcode_startsWith	=0`)
-    .then((response) => response.json())
-    .catch((error) => console.log(error)); // continuacao de criando uma URL
-};
-
-// Async POST Function to POST data */
-const postData = async (data) => {
-  console.log(data);
-  return await fetch("http://localhost:8000/add", {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header
-  })
-    .then((response) => response.json())
-    .catch((error) => console.log(error));
-};
-
 const getServerData = async () => {
-  const url = "http://localhost:8000/get";
+  const url = "http://localhost:8000/weathercity";
   const response = await fetch(url, {
     method: "GET",
     credentials: "same-origin",
@@ -76,6 +37,8 @@ const getServerData = async () => {
     console.log("error", error);
   }
 };
+
+
 
 function updateUI(weather) {
   console.log(weather);
