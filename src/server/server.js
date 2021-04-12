@@ -20,8 +20,6 @@ const createExpressApp = () => {
   return app;
 };
 
-const app = createExpressApp();
-
 function setupEndPoint(app) {
   const responseDate = {
     place: "h",
@@ -32,61 +30,86 @@ function setupEndPoint(app) {
   });
 
   app.get("/weathercity", (request, response) => {
-    response.send(responseDate);
+    response.send("responseDate");
     console.log("get resquest to homepage");
   });
 }
 
 /* Function to GET Web Geoname API Data*/
 
-const getGeonames = async (destination) => {
+const getGeonames = async () => {
   const baseUrl = "api.geonames.org/postalCodeSearchJSON?";
   const apiKey = "geoname_Api";
 
-  return await fetch(`${baseUrl}placename=${destination},&username=${apiKey}`)
+  return await fetch(`${baseUrl}placename=${city},&username=${apiKey}`)
     .then((response) => response.json())
     .then(data); // continuacao de criando uma URL
 };
 
-const createDataJson = (data) => {
-  return {
-    //criando as info (json) para o servidor
-    // lat = data.geonames[0].lat,
-    // lng = data.geonames[0].lng,
-  };
-};
+//criar informacoes em json para o servidor
+// const createDataJsonGeonames = (data) => {
+//   return {
+  
+//     // lat = data.geonames[0].lat,
+//     // lng = data.geonames[0].lng,
+//   };
+// };
 
 //current weather Api
 
 const getCurrentWeather = async () => {
-  const baseUrl =
-    "api.geonames.org/postalCodeSearchJSON?placename=austria&username=ariane&postalcode_startsWith	=0";
-  const apiKey = "geoname_Api";
+  const baseUrl ="http://api.weatherbit.io/v2.0/current";
+  const apiKey = "weatherbit_Api";
 
   return await fetch(
-    `${baseUrl}placename=${destination},&username=${apiKey}`
+    `${baseUrl}?lat&=${lat}&lon=${lng}&key=${apiKey}`
+  ).then((response) => response.json());
+  // continuacao de criando uma URL
+};
+// const createDataJsonCurrentWeather = (data) => {
+//   return {
+  
+//     // lat = data.[0].lat,
+//     // lng = data.geonames[0].lng,
+//   };
+// };
+
+
+
+const getFutureWeather = async () => {
+  const baseUrl ="http://api.weatherbit.io/v2.0/forecast/daily";
+  const apiKey = "weatherbit_Api";
+
+  return await fetch(
+    `${baseUrl}?lat&=${lat}&lon=${lng}&key=${apiKey}`
   ).then((response) => response.json());
   // continuacao de criando uma URL
 };
 
-const getCurrentWeather = async () => {
+
+const getImagePlace = async () => {
   const baseUrl = "https://pixabay.com/api/";
   const apiKey = "pixabay_Api";
 
   return await fetch(
-    `${baseUrl}placename=${destination},&username=${apiKey}&postalcode_startsWith	=0`
+    //https://pixabay.com/api/?q=&category=places&orientation=horizontal
+    `${baseUrl}?key=${apiKey}&q=${country},&category=places&orientation=horizontal`
   )
     .then((response) => response.json())
     .catch((error) => console.log(error)); // continuacao de criando uma URL
 };
 
+const server = app.listen(port, listening);
+
 function listening() {
   console.log(server);
+  console.log(`running on localhost: ${port}`);
 }
 
+const app = createExpressApp();
 setupEndPoint(app);
 
 const port = 8000;
 
 // Spin up the server
-const server = app.listen(port, listening);
+
