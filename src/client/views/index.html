@@ -8,20 +8,19 @@
   </head>
   <body>
     <div id="app">
-
       <div id="title">where would you travel next?</div>
 
       <form onsubmit="Client.generateButtonClick(event)">
         <textarea
-        type="text"id="destination"
+          type="text"
+          id="destination"
           placeholder="I would like to travel to..."
         >
-      </textarea>
-      <input type="inputDate" id="inputDate" />
-      
-        <button id="generate" type="submit">Generate</button>
-      </div>
-    </form>
+        </textarea>
+        <input type="inputDate" id="inputDate" />
+
+        <button id="clickSearch" type="submit">Generate</button>
+      </form>
 
       <div class="holder entry">
         <div class="icon" id="icon">

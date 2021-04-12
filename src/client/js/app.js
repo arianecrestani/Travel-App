@@ -1,25 +1,24 @@
 /* Global Variables */
 
 // pegando os elementos do html
-const generate = document.getElementById("clickSearch");
+const searchButton = document.getElementById("clickSearch");
 const date = document.getElementById("inputDate");
 const destination = document.getElementById("destination");
 
-// Create a new date instance dynamically with JS
-let dt = new Date();
-// creando nova data
-let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
 
 /* Function called by event */
 const generateButtonClick = () => {
-  getGeonames(destination.value)
-    .then((wheatherData) => postData(createDataJson(wheatherData)))
-    .then(() => getServerData())
-    .then((projectData) => response.send(projectData));
+  // getGeonames(destination.value)
+  //   .then((wheatherData) => postData(createDataJson(wheatherData)))
+  //   .then(() => getServerData())
+  //   .then((projectData) => response.send(projectDa));
+
+
 };
 
-generate.addEventListener("click", generateButtonClick);
+searchButton.addEventListener("click", generateButtonClick);
 
+//1 pedido do site weathercity
 const getServerData = async () => {
   const url = "http://localhost:8000/weathercity";
   const response = await fetch(url, {
@@ -37,8 +36,6 @@ const getServerData = async () => {
     console.log("error", error);
   }
 };
-
-
 
 function updateUI(weather) {
   console.log(weather);
