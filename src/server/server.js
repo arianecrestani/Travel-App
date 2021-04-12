@@ -103,7 +103,7 @@ const server = app.listen(port, listening);
 
 function listening() {
   console.log(server);
-  console.log(`running on localhost: ${port}`);
+ 
 }
 
 const app = createExpressApp();
@@ -111,5 +111,6 @@ setupEndPoint(app);
 
 const port = 8000;
 
-// Spin up the server
+// Spin up the serverc
+
 

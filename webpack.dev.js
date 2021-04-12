@@ -6,7 +6,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
     mode: 'development',
     devtool: 'source-map',
-    entry: './src/client/index.js',
+    entry: {
+    main:path.resolve(__dirname,
+    './src/client/index.js'),
+    },
     output: {
         libraryTarget: 'var',
         library: 'Client'
@@ -16,17 +19,17 @@ module.exports = {
             {
                 test: '/\.js$/',
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: ["babel-loader"]
             },  
             {
-                test: /\.scss$/,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+                test: /\.(scss|css)$/,
+                use: [ 'style-loader', 'css-loader', 'sass-loader',]
             }
         ]
     },
     plugins: [
         new HtmlWebPackPlugin({
-            template: "./src/client/views/index.html",
+            template: path.resolve(__dirname, './src/client/views/index.html'),
             filename: "./index.html",
         }),
         new CleanWebpackPlugin({
