@@ -5,5 +5,4 @@ import "./styles/main.scss";
 import "./styles/media.scss";
 import "./styles/style.scss";
 
-
 export { app };

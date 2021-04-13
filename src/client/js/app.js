@@ -1,6 +1,3 @@
-
-
-
 /* Global Variables */
 
 // pegando os elementos do html
@@ -14,8 +11,6 @@ const generateButtonClick = () => {
   //   .then((wheatherData) => postData(createDataJson(wheatherData)))
   //   .then(() => getServerData())
   //   .then((projectData) => response.send(projectDa));
-  console.log("text");
-  
   getServerData().then((data) => console.log(data));
 };
 
@@ -25,14 +20,14 @@ searchButton.addEventListener("click", generateButtonClick);
 const getServerData = async () => {
   const url = "http://localhost:8000/weathercity";
   const response = await fetch(url, {
-    method: "POST",
+    method: "GET",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
     
   });
-  console.log("text");
+
   try {
     const newData = await response.json(); //resposta do servidor
     console.log(newData);
