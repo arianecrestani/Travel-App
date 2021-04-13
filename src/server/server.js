@@ -99,18 +99,13 @@ const getImagePlace = async () => {
     .catch((error) => console.log(error)); // continuacao de criando uma URL
 };
 
-const server = app.listen(port, listening);
-
 function listening() {
   console.log(server);
  
 }
-
 const app = createExpressApp();
 setupEndPoint(app);
 
 const port = 8000;
-
-// Spin up the serverc
-
+const server = app.listen(port, listening);
 

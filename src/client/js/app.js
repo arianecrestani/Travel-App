@@ -1,3 +1,6 @@
+
+
+
 /* Global Variables */
 
 // pegando os elementos do html
@@ -22,12 +25,12 @@ searchButton.addEventListener("click", generateButtonClick);
 const getServerData = async () => {
   const url = "http://localhost:8000/weathercity";
   const response = await fetch(url, {
-    method: "GET",
+    method: "POST",
     credentials: "same-origin",
-    mode: "cors",
     headers: {
       "Content-Type": "application/json",
     },
+    
   });
   console.log("text");
   try {
@@ -39,23 +42,4 @@ const getServerData = async () => {
   }
 };
 
-// function updateUI(weather) {
-//   console.log(weather);
 
-//   const icon = document.getElementById("icon");
-//   const date = document.getElementById("date");
-//   const temp = document.getElementById("temp");
-//   const status = document.getElementById("status");
-//   const city = document.getElementById("location");
-//   const content = document.getElementById("content");
-
-//   // icon.innerHTML = `<img src="svg/${weather.icon}.svg" alt="nothing yet" />`;
-//   date.innerHTML = weather.date ? weather.date : "";
-//   temp.innerHTML = `${weather.temperature}°C`;
-//   status.innerHTML = weather.status ? weather.status : "";
-//   city.innerHTML = weather.city ? weather.city : "";
-//   content.innerHTML = weather.feelings ? weather.feelings : "";
-
-//   textArea.value = "";
-//   zipcode.value = "";
-// }
