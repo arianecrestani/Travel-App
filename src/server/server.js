@@ -31,7 +31,7 @@ function setupEndPoint(app) {
   });
 
   app.get("/weathercity", (request, response) => {
-    getGeonames(request.body.destination).then((json) => response.send(json)); //enviando a resposta para o cliente
+    getGeonames(request.body.data).then((json) => response.send(json)); //enviando a resposta para o cliente
   });
 }
 
