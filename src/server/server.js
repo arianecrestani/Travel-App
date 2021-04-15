@@ -21,17 +21,18 @@ const createExpressApp = () => {
   return app;
 };
 
-function setupEndPoint(app) {
-  const responseDate = {
-    city: "berlin",
-  };
+let responseData = { };
 
+function setupEndPoint(app) {
   app.get("/", function (request, response) {
     response.sendFile("dist/index.html");
   });
 
-  app.get("/weathercity", (request, response) => {
-    getGeonames(request.body.data).then((json) => response.send(json)); //enviando a resposta para o cliente
+  app.post("/weathercity", (request, response) => {
+    responseData.city = request.body.destination;
+    console.log(request.body.destination)
+    getGeonames(request.body.destination)
+    .then(() => response.send(responseData)); //enviando a resposta para o cliente
   });
 }
 
@@ -41,20 +42,24 @@ const getGeonames = async (city) => {
   const baseUrl = "http://api.geonames.org/postalCodeSearchJSON?";
   const apiKey = `${process.env.geoname_Api}`;
 
-  return await fetch(`${baseUrl}placename=${city},&username=${apiKey}`)
-    .then((response) => createDataJsonGeonames(response))
-    .then((json) => {
-      console.log(json);
-    }); // continuacao de criando uma URL
+  return await fetch(`${baseUrl}username=${apiKey}&placename=${city}`)
+    .then((response) => response.json())
+    .then((json) => createLatLngFromJson(json) ); // continuacao de criando uma URL
 };
 
 // criar informacoes em json para o servidor
-const createDataJsonGeonames = (data) => {
+const createLatLngFromJson = (data) => {
+  console.log("createDataJsonGeonames")
   console.log(data)
-  return {
-    lat: data.postalCodes[0].lat,
-    lng: data.postalCodes[0].lng,
-  };
+  if (data.postalCodes === undefined) {
+    return {}
+  }
+  responseData.lat = data.postalCodes[0].lat
+  responseData.lng = data.postalCodes[0].lng
+  // return {
+  //   lat: data.postalCodes[0].lat,
+  //   lng: data.postalCodes[0].lng,
+  // };
 };
 
 //current weather Api
@@ -71,13 +76,6 @@ const getCurrentWeather = async () => {
 
   // continuacao de criando uma URL
 };
-// const createDataJsonCurrentWeather = (data) => {
-//   return {
-
-//     // lat = data.[0].lat,
-//     // lng = data.geonames[0].lng,
-//   };
-// };
 
 const getFutureWeather = async () => {
   const baseUrl = "http://api.weatherbit.io/v2.0/forecast/daily";

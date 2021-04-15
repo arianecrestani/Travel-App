@@ -1,9 +1,12 @@
 /* Global Variables */
 
-// pegando os elementos do html
-const searchButton = document.getElementById("clickSearch");
-const date = document.getElementById("inputDate");
-const destination = document.getElementById("destination");
+
+  const searchButton = document.getElementById("clickSearch");
+  const startDate = document.getElementById("inputStartDate");
+  const endDate = document.getElementById("inputEndDate");
+  const destination = document.getElementById("destination");
+  
+
 
 /* Function called by event */
 const generateButtonClick = () => {
@@ -17,13 +20,13 @@ const postServerData = async () => {
   const body = {
     destination: destination.value,
   };
-  await fetch("http://localhost:8000/weathercity", {
+  return fetch("http://localhost:8000/weathercity", {
     method: "POST",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(body)
   })
   .then((response) => response.json())
 
