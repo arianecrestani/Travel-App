@@ -1,6 +1,8 @@
 //dependecias
+
+var path = require('path')
 const fetch = require("node-fetch");
-const { request, json } = require("express");
+const { request } = require("express");
 
 const createExpressApp = () => {
   const dotenv = require("dotenv");
@@ -21,7 +23,7 @@ const createExpressApp = () => {
 
 function setupEndPoint(app) {
   const responseDate = {
-    place: "h",
+    city: "berlin",
   };
 
   app.get("/", function (request, response) {
@@ -29,34 +31,31 @@ function setupEndPoint(app) {
   });
 
   app.get("/weathercity", (request, response) => {
-    getGeonames("london")
-      .then((json) => response.send(json))//enviando a resposta para o cliente
-    
-    console.log("get resquest to homepage");
+    getGeonames(request.body.destination).then((json) => response.send(json)); //enviando a resposta para o cliente
   });
 }
 
 /* Function to GET Web Geoname API Data*/
 
 const getGeonames = async (city) => {
-  const baseUrl = "api.geonames.org/postalCodeSearchJSON?";
+  const baseUrl = "http://api.geonames.org/postalCodeSearchJSON?";
   const apiKey = `${process.env.geoname_Api}`;
 
   return await fetch(`${baseUrl}placename=${city},&username=${apiKey}`)
-    .then((response) => response.json())
+    .then((response) => createDataJsonGeonames(response))
     .then((json) => {
       console.log(json);
     }); // continuacao de criando uma URL
 };
 
-//criar informacoes em json para o servidor
-// const createDataJsonGeonames = (data) => {
-//   return {
-
-//     // lat = data.geonames[0].lat,
-//     // lng = data.geonames[0].lng,
-//   };
-// };
+// criar informacoes em json para o servidor
+const createDataJsonGeonames = (data) => {
+  console.log(data)
+  return {
+    lat: data.postalCodes[0].lat,
+    lng: data.postalCodes[0].lng,
+  };
+};
 
 //current weather Api
 
