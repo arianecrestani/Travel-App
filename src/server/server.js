@@ -1,6 +1,6 @@
 //dependecias
 
-var path = require('path')
+var path = require("path");
 const fetch = require("node-fetch");
 const { request } = require("express");
 
@@ -21,7 +21,7 @@ const createExpressApp = () => {
   return app;
 };
 
-let responseData = { };
+let responseData = {};
 
 function setupEndPoint(app) {
   app.get("/", function (request, response) {
@@ -30,9 +30,10 @@ function setupEndPoint(app) {
 
   app.post("/weathercity", (request, response) => {
     responseData.city = request.body.destination;
-    console.log(request.body.destination)
+    console.log(request.body.destination);
     getGeonames(request.body.destination)
-    .then(() => response.send(responseData)); //enviando a resposta para o cliente
+      .then(() => getCurrentWeather(responseData.lat, responseData.lng))
+      .then(() => response.send(responseData)); //enviando a resposta para o cliente
   });
 }
 
@@ -44,37 +45,40 @@ const getGeonames = async (city) => {
 
   return await fetch(`${baseUrl}username=${apiKey}&placename=${city}`)
     .then((response) => response.json())
-    .then((json) => createLatLngFromJson(json) ); // continuacao de criando uma URL
+    .then((json) => createLatLngFromJson(json)); // continuacao de criando uma URL
 };
 
 // criar informacoes em json para o servidor
-const createLatLngFromJson = (data) => {
-  console.log("createDataJsonGeonames")
-  console.log(data)
-  if (data.postalCodes === undefined) {
-    return {}
+const createLatLngFromJson = (dataJson) => {
+  console.log("createDataJsonGeonames");
+  console.log(dataJson);
+  if (dataJson.postalCodes === undefined) {
+    return {};
   }
-  responseData.lat = data.postalCodes[0].lat
-  responseData.lng = data.postalCodes[0].lng
-  // return {
-  //   lat: data.postalCodes[0].lat,
-  //   lng: data.postalCodes[0].lng,
-  // };
+  responseData.lat = dataJson.postalCodes[0].lat;
+  responseData.lng = dataJson.postalCodes[0].lng;
 };
 
 //current weather Api
 
-const getCurrentWeather = async () => {
-  const baseUrl = "http://api.weatherbit.io/v2.0/current";
+const getCurrentWeather = async (lat, lng) => {
+  console.log(`lat: ${lat} lng: ${lng}`);
+  const baseUrl = "http://api.weatherbit.io/v2.0/current?";
   const apiKey = `${process.env.weatherbit_Api}`;
 
-  return await fetch(`${baseUrl}?lat&=${lat}&lon=${lng}&key=${apiKey}`)
+  return await fetch(
+    `${baseUrl}lat=${lat}&lon=${lng}&key=${apiKey}&include=minutely`
+  )
     .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-    });
+    .then((json) => createWeatherDataFromJson(json));
+};
 
-  // continuacao de criando uma URL
+const createWeatherDataFromJson = (dataJson) => {
+  console.log("createWeatherDataFromJson");
+  console.log(dataJson);
+
+  responseData.temp = dataJson.data[0].temp
+  responseData.weather = dataJson.data[0].icon.description
 };
 
 const getFutureWeather = async () => {
