@@ -34,6 +34,7 @@ function setupEndPoint(app) {
     getGeonames(request.body.destination)
       .then(() => getCurrentWeather(responseData.lat, responseData.lng))
       .then(() => getFutureWeather(responseData.city))
+      .then(() => getImagePlace(responseData.city))
       .then(() => response.send(responseData)); //enviando a resposta para o cliente
   });
 }
@@ -74,21 +75,19 @@ const getCurrentWeather = async (lat, lng) => {
     .then((json) => createWeatherDataFromJson(json));
 };
 
-
 const createWeatherDataFromJson = (dataJson) => {
   console.log("createWeatherDataFromJson");
   console.log(dataJson);
 
-  responseData.temp = dataJson.data[0].temp
-  responseData.weather = dataJson.data[0].icon
-  responseData.weather = dataJson.data[0].description
+  responseData.temp = dataJson.data[0].temp;
+  responseData.weatherIcon = dataJson.data[0].weather.icon;
+  responseData.weatherDescription = dataJson.data[0].weather.description;
 };
 
 const getFutureWeather = async (city) => {
   const baseUrl = "http://api.weatherbit.io/v2.0/forecast/daily?";
   const apiKey = `${process.env.weatherbit_Api}`;
   return await fetch(`${baseUrl}city=${city}&key=${apiKey}`)
-
     .then((response) => response.json())
     .then((json) => createFutureWeatherDataFromJson(json));
 };
@@ -96,24 +95,28 @@ const getFutureWeather = async (city) => {
 const createFutureWeatherDataFromJson = (dataJson) => {
   console.log("createFutureWeatherDataFromJson");
   console.log(dataJson);
-  
-  responseData.min_temp = dataJson.data[0].min_temp
-  responseData.max_temp = dataJson.data[0].max_temp
 
+  responseData.min_temp = dataJson.data[0].min_temp;
+  responseData.max_temp = dataJson.data[0].max_temp;
+  responseData.weatherIcon = dataJson.data[0].weather.icon;
+  responseData.weatherDescription = dataJson.data[0].weather.description;
 };
 
-const getImagePlace = async () => {
-  const baseUrl = "https://pixabay.com/api/";
+const getImagePlace = async (city) => {
+  const baseUrl = "https://pixabay.com/api/?";
   const apiKey = `${process.env.pixabay_Api}`;
 
   return await fetch(
-    //https://pixabay.com/api/?q=&category=places&orientation=horizontal
-    `${baseUrl}?key=${apiKey}&q=${country},&category=places&orientation=horizontal`
+    `${baseUrl}key=${apiKey}&q=${city}&category=places&orientation=horizontal&per_page=3`
   )
     .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-    });
+    .then((json) => createPixabayDataFromJson(json));
+};
+const createPixabayDataFromJson = (dataJson) => {
+  console.log("createPixabayDataFromJson");
+  console.log(dataJson);
+
+  responseData.imagePlace = dataJson.hits[0].webformatURL;
 };
 
 function listening() {
