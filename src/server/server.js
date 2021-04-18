@@ -80,6 +80,8 @@ const createWeatherDataFromJson = (dataJson) => {
   console.log(dataJson);
 
   responseData.currentTemp = dataJson.data[0].temp;
+  responseData.min_temp = dataJson.data[0].min_temp;
+  responseData.max_temp = dataJson.data[0].max_temp;
   responseData.weatherCurrentIcon = dataJson.data[0].weather.icon;
   responseData.weatherDescription = dataJson.data[0].weather.description;
 };
@@ -96,11 +98,28 @@ const createFutureWeatherDataFromJson = (dataJson) => {
   console.log("createFutureWeatherDataFromJson");
   console.log(dataJson);
 
-  responseData.futureTemp = dataJson.data[0].temp;
+  // percorrer o dataJson e criar uma list de temperaturas para os proximos dias. 
+  let futureTemp = [];
+//pegando elementos do json mais espefificado 
+  dataJson.data.forEach(element => { // just geting needs value from Json
+    const newElement = {
+      date: element.valid_date,
+      icon: element.weather.icon,
+      tempMin : element.min_temp,
+      tempMax : element.max_temp,
+      description : element.description
+    }
+    futureTemp.push(newElement)
+  });
+  
+  responseData.futureTemp = dataJson.data[0].valid_date;
   responseData.min_temp = dataJson.data[0].min_temp;
   responseData.max_temp = dataJson.data[0].max_temp;
   responseData.weatherFuturIcon = dataJson.data[0].weather.icon;
   responseData.weatherDescription = dataJson.data[0].weather.description;
+
+
+  responseData.futureTemp = futureTemp;
 };
 
 
@@ -119,6 +138,8 @@ const createPixabayDataFromJson = (dataJson) => {
   console.log(dataJson);
 
   responseData.imagePlace = dataJson.hits[0].webformatURL;
+ 
+
 };
 
 function listening() {
