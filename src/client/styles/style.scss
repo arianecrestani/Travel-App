@@ -28,66 +28,18 @@ body {
   right: 50%;
   transform: translate(50%, -50%);
   border-radius: 66px;
-  box-shadow: 2px 2px #14213d;
-}
-.holderHeadline {
-  padding-top: 19px;
-}
 
-.zip {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
-#zip {
-  width: 50%;
-  height: 47px;
-  font-size: 1.5em;
-  border-radius: 10px;
-  border: 1px solid dimgray;
-  padding-left: 40px;
+.inputInfo {
+background-color: black;
 }
 textarea {
-  padding-top: 13px;
-  padding-left: 60px;
-  width: 70%;
-  height: 56px;
-  border-radius: 10px;
-  font-family: "Poppins", sans-serif;
-  background: #22b2da;
-  font-size: 1.5em;
+  background-color: bisque;
 }
-.icon > img {
-  width: 20%;
-  transform: translateY(-22px);
-}
-#generate {
-  background-color: lightslategrey;
-  color: lightblue;
-  position: absolute;
-  bottom: 25px;
-  left: 50%;
-  width: 78%;
-  height: 69px;
-  transform: translateX(-50%);
-  border-radius: 26px;
-  font-size: 1.5em;
-  box-shadow: 1px 0.3px 5px #444;
-}
-
-#generate:hover {
-  background-color: #22b2da;
-}
-
-#temp {
-  font-size: 3.5em;
-  margin-top: 9px;
-}
-#date {
-  margin: -10px;
-  font-size: 1.5em;
-}
-
 #entryHolder {
   display: flex;
   flex-direction: column;
+}
+.icon {
+  width: 60px;
 }

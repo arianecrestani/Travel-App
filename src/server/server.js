@@ -30,9 +30,9 @@ function setupEndPoint(app) {
 
   app.post("/weathercity", (request, response) => {
     responseData.city = request.body.destination;
-    console.log(request.body.destination);
+    console.log(request.body); // wiil get destionation, inputStartDate and inputEndDate
     getGeonames(request.body.destination)
-      .then(() => getCurrentWeather(responseData.lat, responseData.lng))
+      .then(() => getCurrentWeather(responseData.latCity, responseData.lngCity))
       .then(() => getFutureWeather(responseData.city))
       .then(() => getImagePlace(responseData.city))
       .then(() => response.send(responseData)); //enviando a resposta para o cliente
@@ -57,8 +57,8 @@ const createLatLngFromJson = (dataJson) => {
   if (dataJson.postalCodes === undefined) {
     return {};
   }
-  responseData.lat = dataJson.postalCodes[0].lat;
-  responseData.lng = dataJson.postalCodes[0].lng;
+  responseData.latCity = dataJson.postalCodes[0].lat;
+  responseData.lngCity = dataJson.postalCodes[0].lng;
 };
 
 //current weather Api
@@ -79,8 +79,8 @@ const createWeatherDataFromJson = (dataJson) => {
   console.log("createWeatherDataFromJson");
   console.log(dataJson);
 
-  responseData.temp = dataJson.data[0].temp;
-  responseData.weatherIcon = dataJson.data[0].weather.icon;
+  responseData.currentTemp = dataJson.data[0].temp;
+  responseData.weatherCurrentIcon = dataJson.data[0].weather.icon;
   responseData.weatherDescription = dataJson.data[0].weather.description;
 };
 
@@ -96,11 +96,13 @@ const createFutureWeatherDataFromJson = (dataJson) => {
   console.log("createFutureWeatherDataFromJson");
   console.log(dataJson);
 
+  responseData.futureTemp = dataJson.data[0].temp;
   responseData.min_temp = dataJson.data[0].min_temp;
   responseData.max_temp = dataJson.data[0].max_temp;
-  responseData.weatherIcon = dataJson.data[0].weather.icon;
+  responseData.weatherFuturIcon = dataJson.data[0].weather.icon;
   responseData.weatherDescription = dataJson.data[0].weather.description;
 };
+
 
 const getImagePlace = async (city) => {
   const baseUrl = "https://pixabay.com/api/?";
