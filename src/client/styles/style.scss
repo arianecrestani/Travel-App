@@ -43,3 +43,34 @@ textarea {
 .icon {
   width: 60px;
 }
+
+.container {
+  // display: grid;
+  // grid-template-columns: auto auto auto auto;
+  // grid-template-rows: 150px 150px 150px;
+  // background-color: black;
+  // justify-content: space-evenly;
+
+  display: grid;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 50px;
+  background-color: #2196F3;
+  padding: 22px;
+
+
+  // grid-template-columns: auto auto auto;
+  // grid-template-rows: -1px 30px 30px 30px;
+  // background-color: black;
+  // justify-content: space-evenly;
+  // grid-gap: 10px;
+  
+  
+}
+
+.divSection {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  color: blueviolet;
+}
