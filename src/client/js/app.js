@@ -1,6 +1,5 @@
 /* Global Variables */
 
-
 const searchButton = document.getElementById("clickSearch");
 const startDate = document.getElementById("inputStartDate");
 const endDate = document.getElementById("inputEndDate");
@@ -75,28 +74,50 @@ const showTemperature = (dayTemp) => {
   console.log(dayTemp);
 
   const container = document.getElementsByClassName("container")[0];
-  container.appendChild(createWeatherView());
 
+  //call of createWeatherView and adc parameter day temp
+  container.appendChild(createWeatherView(dayTemp));
 
   // get the div by id
   // add element to grid
 };
 
 const createWeatherView = (dayTemp) => {
-
   const section = createDivSection();
 
+  const imageWeather = document.createElement("img");
+  imageWeather.id = "iconFuture";
+  imageWeather.src = `https://www.weatherbit.io/static/img/icons/${dayTemp.icon}.png`;
+  section.appendChild(imageWeather);
 
-  // const futureWeatherSection = document.createElement("div");
-  // futureWeatherSection.className = "divSectionTemperature";
-  // futureWeatherSection.id = "WeatherSectionFuture";
-  // futureWeatherSection.appendChild(container);
+  const description = document.createElement("h3");
+  description.id = "descriptionWeatherFuture";
+  description.innerText = dayTemp.description;
+  section.appendChild(description);
+
+  const date = document.createElement("p");
+  date.id = "dateFuture";
+  date.innerHTML = dayTemp.date;
+  section.appendChild(date);
+
+  const minTemp = document.createElement("p");
+  minTemp.id = "minTemp"
+  minTemp.innerHTML =`min is${dayTemp.tempMin}`;
+  section.appendChild(minTemp);
+  
+
+  const maxTemp = document.createElement("p");
+  maxTemp.id ="maxTemp"
+  maxTemp.innerHTML = `max is ${dayTemp.tempMax}`;
+  section.appendChild(maxTemp);
+
   // create the icon
   // create the description
   // create the weather
   // create the max
   // create the min
   // return view
+
   return section;
 };
 

@@ -108,7 +108,7 @@ const createFutureWeatherDataFromJson = (dataJson) => {
       icon: element.weather.icon,
       tempMin: element.min_temp,
       tempMax: element.max_temp,
-      description: element.description,
+      description: element.weather.description,
     };
     futureTemp.push(newElement);
   });

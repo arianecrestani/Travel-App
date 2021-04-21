@@ -40,8 +40,10 @@ textarea {
   display: flex;
   flex-direction: column;
 }
-.icon {
-  width: 60px;
+#weatherCurrentIcon {
+  width: 300px;
+
+
 }
 
 .container {
@@ -72,5 +74,11 @@ textarea {
   width: 100px;
   height: 100px;
   background-color: aqua;
-  color: blueviolet;
+
+}
+.divSectionTemperature {
+  background-color:white
+}
+#iconFuture {
+  width: 20px;
 }
