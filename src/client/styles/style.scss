@@ -1,11 +1,3 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 2px;
-}
-
 body {
   display: flex;
   justify-content: center;
@@ -19,31 +11,59 @@ body {
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background-color: whitesmoke;
-  width: 600px;
-  height: 630px;
-  position: absolute;
-  top: 52%;
-  right: 50%;
-  transform: translate(50%, -50%);
-  border-radius: 66px;
+  width: 900px;
+}
 
+.placeImage {
+  width: 900px;
+  height: 50vh;
 }
 .inputInfo {
-background-color: black;
+  display: flex;
+  flex-direction: column;
+
 }
-textarea {
-  background-color: bisque;
+
+#destination {
+  border-radius: 5px;
+  background-color:silver;
+  width: 35%;
+  height: 30px;
+  margin-left: 30%;
+  transform: translateX(-50%);
+  position: relative;
+  padding-top: 20px;
+
+}
+#inputDate {
+  border-radius: 5px;
+  width: 20%;
+  height: 20px;
+  margin-left: 77%;
+  transform: translateX(-70%);
+  margin-top: -46px;
+  position: relative;
+  padding-top: 20px;
+
+}
+#clickSearch {
+  border-radius: 7px;
+  margin-top: 40px;
+  width: 30%;
+  height: 30px;
+  transform: translateX(120%);
+  margin-bottom: 30px;
 }
 #entryHolder {
   display: flex;
   flex-direction: column;
 }
 #weatherCurrentIcon {
-  width: 300px;
-
-
+  width: 200px;
 }
 
 .container {
@@ -54,31 +74,25 @@ textarea {
   // justify-content: space-evenly;
 
   display: grid;
-  display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 50px;
-  background-color: #2196F3;
-  padding: 22px;
-
+  background-color: #2196f3;
 
   // grid-template-columns: auto auto auto;
   // grid-template-rows: -1px 30px 30px 30px;
   // background-color: black;
   // justify-content: space-evenly;
   // grid-gap: 10px;
-  
-  
 }
 
 .divSection {
   width: 100px;
   height: 100px;
   background-color: aqua;
-
 }
 .divSectionTemperature {
-  background-color:white
+  background-color: white;
 }
 #iconFuture {
-  width: 20px;
+  width: 30px;
 }

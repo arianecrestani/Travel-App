@@ -8,21 +8,19 @@
   </head>
   <body>
     <div id="app">
-      <div id="title">where would you travel next?</div>
-
-      <textarea
+      <div class="image">
+      <img class="placeImage" src="./src/client/styles/ballons2.jpg" >
+      <h1>where are you like to go?</h1> 
+    </div>
+    <div class="inputInfo">
+      <input
         type="text"
         id="destination"
-        placeholder="I would like to travel to..."
-      >
-      </textarea>
-      <div class="inputInfo">
-        <input type="number" placeholder= "Start Date" id="inputStartDate" />
-        <input type="number" placeholder= "End Date" id="inputEndDate" />
-        <button id="clickSearch" type="submit">Generate</button>
-      </div>
+        placeholder="I would like to travel to...">
+        <input type="text" placeholder= "When" id="inputDate" /> 
+    </div>
+    <button id="clickSearch" type="submit">GO</button>
         <div class="title"></div>
-
         <div id="entryHolder">
           <img src="" alt="" id="weatherCurrentIcon" />
           <div id="min_temp"></div>

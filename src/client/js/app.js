@@ -1,8 +1,7 @@
 /* Global Variables */
 
 const searchButton = document.getElementById("clickSearch");
-const startDate = document.getElementById("inputStartDate");
-const endDate = document.getElementById("inputEndDate");
+const startDate = document.getElementById("inputDate");
 const destination = document.getElementById("destination");
 
 // Create a new date instance dynamically with JS
@@ -24,7 +23,6 @@ const postServerData = async () => {
   const body = {
     destination: destination.value,
     startDate: startDate.value,
-    endDate: endDate.value,
   };
   return fetch("http://localhost:8000/weathercity", {
     method: "POST",
@@ -39,6 +37,7 @@ const postServerData = async () => {
 function updateUI(weather) {
   console.log(weather);
 
+  const imagePlace = document.getElementsByClassName("placeImage")[0];
   const weatherCurrentIcon = document.getElementById("weatherCurrentIcon");
   const min_temp = document.getElementById("min_temp");
   const max_temp = document.getElementById("max_temp");
@@ -46,8 +45,8 @@ function updateUI(weather) {
   const date = document.getElementById("date");
   const weatherDescription = document.getElementById("weatherDescription");
   const city = document.getElementById("city");
-  const imagePlace = document.getElementById("imagePlace");
-
+  
+  imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
   min_temp.innerHTML = `${weather.min_temp}°C`;
   max_temp.innerHTML = `${weather.max_temp}°C`;
@@ -55,11 +54,10 @@ function updateUI(weather) {
   date.innerHTML = weather.newDate ? weather.newDate : "";
   weatherDescription.innerHTML = weather.weatherDescription;
   city.innerHTML = weather.latCity ? weather.lngCity : "";
-  imagePlace.innerHTML = `${weather.imagePlace}`;
+  
 
   destination.value = "";
   startDate.value = "";
-  endDate.value = "";
 
   showFutureTemprature(weather.futureTemp);
 }
@@ -110,13 +108,6 @@ const createWeatherView = (dayTemp) => {
   maxTemp.id ="maxTemp"
   maxTemp.innerHTML = `max is ${dayTemp.tempMax}`;
   section.appendChild(maxTemp);
-
-  // create the icon
-  // create the description
-  // create the weather
-  // create the max
-  // create the min
-  // return view
 
   return section;
 };
