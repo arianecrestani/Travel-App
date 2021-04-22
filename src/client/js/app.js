@@ -38,16 +38,16 @@ function updateUI(weather) {
   const currentTemp = document.getElementById("currentTemp");
   const date = document.getElementById("date");
   const weatherDescription = document.getElementById("weatherDescription");
-  // const city = document.getElementById("city");
+  const inputDate = document.getElementById("inputDate");
 
   imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
   min_temp.innerHTML = `Min ${weather.min_temp}°C`;
   max_temp.innerHTML = `Max ${weather.max_temp}°C`;
   currentTemp.innerHTML = `${weather.currentTemp}°C`;
-  date.innerHTML = weather.newDate ? weather.newDate : "";
+  // const formattedDate = new Date(inputDate.value);
+  date.innerHTML = formatDate(formattedDate);
   weatherDescription.innerHTML = weather.weatherDescription;
-  // city.innerHTML = weather.latCity ? weather.lngCity : "";
 
   destination.value = "";
   startDate.value = "";
@@ -76,6 +76,8 @@ const showTemperature = (dayTemp) => {
 const createWeatherView = (dayTemp) => {
   const section = createDivSection();
 
+  // quando eu coloco a data se a data estiver dentro dos proximos 16 dias ira mudar a cor do border de uma das divs 
+
   const imageWeather = document.createElement("img");
   imageWeather.id = "iconFuture";
   imageWeather.src = `https://www.weatherbit.io/static/img/icons/${dayTemp.icon}.png`;
@@ -86,13 +88,11 @@ const createWeatherView = (dayTemp) => {
   description.innerText = dayTemp.description;
   section.appendChild(description);
 
-  const dt = new Date(dayTemp.date); //call paramenter dayTemp.date e criate new date
-  const formatDate =
-    dt.getDate() + "/" + (1 + dt.getMonth()) + "/" + dt.getFullYear();
+  const weatherDate = new Date(dayTemp.date); //call paramenter dayTemp.date e criate new date
   
   const date = document.createElement("p");
   date.id = "dateFuture";
-  date.innerHTML = formatDate; // call the string formatDate
+  date.innerHTML = formatDate(weatherDate); // call the string formatDate
   section.appendChild(date);
 
   const minTemp = document.createElement("p");
@@ -112,4 +112,8 @@ function createDivSection() {
   const section = document.createElement("div");
   section.className = "divSection";
   return section;
+}
+
+const formatDate = (date) => {
+  return date.getDate() + "/" + (1 + date.getMonth()) + "/" + date.getFullYear();
 }
