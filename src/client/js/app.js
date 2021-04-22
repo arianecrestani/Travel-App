@@ -56,6 +56,9 @@ function updateUI(weather) {
 }
 
 const showFutureTemperature = (futureTemp) => {
+  const container = document.getElementsByClassName("container")[0];
+  container.innerHTML = '';
+
   futureTemp.forEach((element) => {
     showTemperature(element);
   });
