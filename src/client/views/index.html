@@ -10,24 +10,26 @@
     <div id="app">
       <div class="image">
       <img class="placeImage" src="./src/client/styles/ballons2.jpg" >
-      <h1>where are you like to go?</h1> 
     </div>
     <div class="inputInfo">
+      <h1>Where would you like to go?</h1> 
       <input
         type="text"
         id="destination"
         placeholder="I would like to travel to...">
-        <input type="text" placeholder= "When" id="inputDate" /> 
+      <input type="date" placeholder= "2017-06-01" id="inputDate" /> 
+      <button id="clickSearch" type="submit">GO</button>
     </div>
-    <button id="clickSearch" type="submit">GO</button>
-        <div class="title"></div>
+   
+        <div class="currentWeatherSection">
+        <img src="" alt="" id="weatherCurrentIcon" />
+        <div id="weatherDescription"></div>
+      </div>
         <div id="entryHolder">
-          <img src="" alt="" id="weatherCurrentIcon" />
           <div id="min_temp"></div>
           <div id="max_temp"></div>
           <div id="currentTemp"></div>
           <div id="date"></div>
-          <div id="weatherDescription"></div>
           <div id="city"></div>
           <div id="imagePlace"></div>
         </div>

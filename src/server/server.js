@@ -29,6 +29,7 @@ function setupEndPoint(app) {
   });
 
   app.post("/weathercity", (request, response) => {
+    responseData = {};
     responseData.city = request.body.destination;
     console.log(request.body); // wiil get destionation, inputStartDate and inputEndDate
     getGeonames(request.body.destination)

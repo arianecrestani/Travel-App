@@ -4,15 +4,9 @@ const searchButton = document.getElementById("clickSearch");
 const startDate = document.getElementById("inputDate");
 const destination = document.getElementById("destination");
 
-// Create a new date instance dynamically with JS
-let dt = new Date();
-// creando nova data
-let newDate = dt.getMonth() + 1 + "/" + dt.getDate() + "/" + dt.getFullYear();
-
 /* Function called by event */
 const generateButtonClick = () => {
   postServerData()
-    // .then((data) => console.log(data))
     .then((json) => updateUI(json));
 };
 
@@ -44,25 +38,24 @@ function updateUI(weather) {
   const currentTemp = document.getElementById("currentTemp");
   const date = document.getElementById("date");
   const weatherDescription = document.getElementById("weatherDescription");
-  const city = document.getElementById("city");
-  
+  // const city = document.getElementById("city");
+
   imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
-  min_temp.innerHTML = `${weather.min_temp}°C`;
-  max_temp.innerHTML = `${weather.max_temp}°C`;
+  min_temp.innerHTML = `Min ${weather.min_temp}°C`;
+  max_temp.innerHTML = `Max ${weather.max_temp}°C`;
   currentTemp.innerHTML = `${weather.currentTemp}°C`;
   date.innerHTML = weather.newDate ? weather.newDate : "";
   weatherDescription.innerHTML = weather.weatherDescription;
-  city.innerHTML = weather.latCity ? weather.lngCity : "";
-  
+  // city.innerHTML = weather.latCity ? weather.lngCity : "";
 
   destination.value = "";
   startDate.value = "";
 
-  showFutureTemprature(weather.futureTemp);
+  showFutureTemperature(weather.futureTemp);
 }
 
-const showFutureTemprature = (futureTemp) => {
+const showFutureTemperature = (futureTemp) => {
   futureTemp.forEach((element) => {
     showTemperature(element);
   });
@@ -75,9 +68,6 @@ const showTemperature = (dayTemp) => {
 
   //call of createWeatherView and adc parameter day temp
   container.appendChild(createWeatherView(dayTemp));
-
-  // get the div by id
-  // add element to grid
 };
 
 const createWeatherView = (dayTemp) => {
@@ -93,20 +83,23 @@ const createWeatherView = (dayTemp) => {
   description.innerText = dayTemp.description;
   section.appendChild(description);
 
+  const dt = new Date(dayTemp.date); //call paramenter dayTemp.date e criate new date
+  const formatDate =
+    dt.getDate() + "/" + (1 + dt.getMonth()) + "/" + dt.getFullYear();
+  
   const date = document.createElement("p");
   date.id = "dateFuture";
-  date.innerHTML = dayTemp.date;
+  date.innerHTML = formatDate; // call the string formatDate
   section.appendChild(date);
 
   const minTemp = document.createElement("p");
-  minTemp.id = "minTemp"
-  minTemp.innerHTML =`min is${dayTemp.tempMin}`;
+  minTemp.id = "minTemp";
+  minTemp.innerHTML = `min ${dayTemp.tempMin}`;
   section.appendChild(minTemp);
-  
 
   const maxTemp = document.createElement("p");
-  maxTemp.id ="maxTemp"
-  maxTemp.innerHTML = `max is ${dayTemp.tempMax}`;
+  maxTemp.id = "maxTemp";
+  maxTemp.innerHTML = `max ${dayTemp.tempMax}`;
   section.appendChild(maxTemp);
 
   return section;
