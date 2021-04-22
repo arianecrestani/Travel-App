@@ -1,3 +1,3 @@
 
-<img src ="src/client/styles/src/grafico.jpg">
+<img src ="/client/styles/src/grafico.jpg">
 
