@@ -6,8 +6,7 @@ const destination = document.getElementById("destination");
 
 /* Function called by event */
 const generateButtonClick = () => {
-  postServerData()
-    .then((json) => updateUI(json));
+  postServerData().then((json) => updateUI(json));
 };
 
 searchButton.addEventListener("click", generateButtonClick);
@@ -45,19 +44,19 @@ function updateUI(weather) {
   min_temp.innerHTML = `Min ${weather.min_temp}°C`;
   max_temp.innerHTML = `Max ${weather.max_temp}°C`;
   currentTemp.innerHTML = `${weather.currentTemp}°C`;
-  // const formattedDate = new Date(inputDate.value);
+  const formattedDate = new Date(inputDate.value);
   date.innerHTML = formatDate(formattedDate);
   weatherDescription.innerHTML = weather.weatherDescription;
 
+  showFutureTemperature(weather.futureTemp);
+
   destination.value = "";
   startDate.value = "";
-
-  showFutureTemperature(weather.futureTemp);
 }
 
 const showFutureTemperature = (futureTemp) => {
   const container = document.getElementsByClassName("container")[0];
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   futureTemp.forEach((element) => {
     showTemperature(element);
@@ -76,8 +75,6 @@ const showTemperature = (dayTemp) => {
 const createWeatherView = (dayTemp) => {
   const section = createDivSection();
 
-  // quando eu coloco a data se a data estiver dentro dos proximos 16 dias ira mudar a cor do border de uma das divs 
-
   const imageWeather = document.createElement("img");
   imageWeather.id = "iconFuture";
   imageWeather.src = `https://www.weatherbit.io/static/img/icons/${dayTemp.icon}.png`;
@@ -89,10 +86,11 @@ const createWeatherView = (dayTemp) => {
   section.appendChild(description);
 
   const weatherDate = new Date(dayTemp.date); //call paramenter dayTemp.date e criate new date
-  
+  const weatherFormatedDate = formatDate(weatherDate);
+
   const date = document.createElement("p");
   date.id = "dateFuture";
-  date.innerHTML = formatDate(weatherDate); // call the string formatDate
+  date.innerHTML = weatherFormatedDate; // call the string formatDate
   section.appendChild(date);
 
   const minTemp = document.createElement("p");
@@ -105,6 +103,20 @@ const createWeatherView = (dayTemp) => {
   maxTemp.innerHTML = `max ${dayTemp.tempMax}`;
   section.appendChild(maxTemp);
 
+  const inputDate = document.getElementById("inputDate");
+  const inputFormattedDate = formatDate(new Date(inputDate.value));
+
+  // quando eu coloco a data se a data estiver dentro dos proximos 16 dias
+  // ira mudar a cor do border de uma das divs
+
+  if (inputFormattedDate === weatherFormatedDate) {
+    section.setAttribute(
+      "style",
+      "border-color: #158f8b;"
+    );
+    console.log(section);
+  }
+
   return section;
 };
 
@@ -115,5 +127,7 @@ function createDivSection() {
 }
 
 const formatDate = (date) => {
-  return date.getDate() + "/" + (1 + date.getMonth()) + "/" + date.getFullYear();
-}
+  return (
+    date.getDate() + "/" + (1 + date.getMonth()) + "/" + date.getFullYear()
+  );
+};
