@@ -52,6 +52,10 @@ function updateUI(weather) {
   const days = calculateDaysBetweenDates(todayDate, formattedDate); // days
   date.innerHTML = `your travel is in ${Math.ceil(days)} days`;
 
+  if (days < 0) {
+    date.innerHTML = `Your travel have already happend`;
+  }
+
   showFutureTemperature(weather.futureTemp);
 
   destination.value = "";
@@ -139,9 +143,10 @@ const formatDate = (date) => {
 const calculateDaysBetweenDates = (date1, date2) => {
   // To calculate the time difference of two dates
   const differenceInTime = date2.getTime() - date1.getTime();
-
+  
   // To calculate the no. of days between two dates
   const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+  return differenceInDays 
 
-  return differenceInDays;
 };
+
