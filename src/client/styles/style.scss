@@ -10,12 +10,12 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 870px;
+  width: 1000px;
 }
 
 .placeImage {
   margin-top: 30px;
-  width: 870px;
+  width: 900px;
   height: fit-content;
   position: static;
   background-size: 100%;
@@ -81,7 +81,7 @@ h1 {
 #entryHolder {
   display: grid;
   grid-template-columns: auto auto auto;
-  width: 870px;
+  width: 900px;
   color: #15b5b0;
   padding-top: 40px;
   padding-bottom: 40px;
@@ -102,7 +102,7 @@ h1 {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 20px;
-  width: 870px;
+  width: 900px;
   margin-bottom: 30px;
 }
 
@@ -126,7 +126,8 @@ h1 {
 .divSectionTemp {
   display: grid;
   flex-direction: column;
-  padding-left: 70px;
-  margin-top: -60px;
+  padding-left: 77px;
+  margin-top: -75px;
+  font-size: 18px;
 
 }

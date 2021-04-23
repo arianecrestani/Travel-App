@@ -90,12 +90,12 @@ const createWeatherView = (dayTemp) => {
 
   const minTemp = document.createElement("p");
   minTemp.id = "minTemp";
-  minTemp.innerHTML = ` ${Math.ceil(dayTemp.tempMin)}`;
+  minTemp.innerHTML = ` ${Math.ceil(dayTemp.tempMin)}°C`;
   divSectionTemp.appendChild(minTemp);
 
   const maxTemp = document.createElement("p");
   maxTemp.id = "maxTemp";
-  maxTemp.innerHTML = `${Math.ceil(dayTemp.tempMax)}`;
+  maxTemp.innerHTML = `${Math.ceil(dayTemp.tempMax)}°C`;
   divSectionTemp.appendChild(maxTemp);
 
   const description = document.createElement("h4");
