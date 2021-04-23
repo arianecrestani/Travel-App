@@ -32,21 +32,25 @@ function updateUI(weather) {
 
   const imagePlace = document.getElementsByClassName("placeImage")[0];
   const weatherCurrentIcon = document.getElementById("weatherCurrentIcon");
+  const currentTemp = document.getElementById("currentTemp");
   const min_temp = document.getElementById("min_temp");
   const max_temp = document.getElementById("max_temp");
-  const currentTemp = document.getElementById("currentTemp");
   const date = document.getElementById("date");
   const weatherDescription = document.getElementById("weatherDescription");
   const inputDate = document.getElementById("inputDate");
 
   imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
-  min_temp.innerHTML = `Min ${weather.min_temp}°C`;
-  max_temp.innerHTML = `Max ${weather.max_temp}°C`;
-  currentTemp.innerHTML = `${weather.currentTemp}°C`;
+  currentTemp.innerHTML = `${Math.ceil(weather.currentTemp)}°C`;
+  min_temp.innerHTML = `Min ${Math.ceil(weather.min_temp)}°C`;
+  max_temp.innerHTML = `Max ${Math.ceil(weather.max_temp)}°C`;
   const formattedDate = new Date(inputDate.value);
-  date.innerHTML = formatDate(formattedDate);
   weatherDescription.innerHTML = weather.weatherDescription;
+
+  //create (how log is the day for the travel?)
+  const todayDate = new Date();
+  const days = calculateDaysBetweenDates(todayDate, formattedDate); // days
+  date.innerHTML = `your travel is in ${Math.ceil(days)} days`;
 
   showFutureTemperature(weather.futureTemp);
 
@@ -80,7 +84,21 @@ const createWeatherView = (dayTemp) => {
   imageWeather.src = `https://www.weatherbit.io/static/img/icons/${dayTemp.icon}.png`;
   section.appendChild(imageWeather);
 
-  const description = document.createElement("h3");
+  const divSectionTemp = document.createElement("div");
+  divSectionTemp.className = "divSectionTemp";
+  section.appendChild(divSectionTemp);
+
+  const minTemp = document.createElement("p");
+  minTemp.id = "minTemp";
+  minTemp.innerHTML = ` ${Math.ceil(dayTemp.tempMin)}`;
+  divSectionTemp.appendChild(minTemp);
+
+  const maxTemp = document.createElement("p");
+  maxTemp.id = "maxTemp";
+  maxTemp.innerHTML = `${Math.ceil(dayTemp.tempMax)}`;
+  divSectionTemp.appendChild(maxTemp);
+
+  const description = document.createElement("h4");
   description.id = "descriptionWeatherFuture";
   description.innerText = dayTemp.description;
   section.appendChild(description);
@@ -93,16 +111,6 @@ const createWeatherView = (dayTemp) => {
   date.innerHTML = weatherFormatedDate; // call the string formatDate
   section.appendChild(date);
 
-  const minTemp = document.createElement("p");
-  minTemp.id = "minTemp";
-  minTemp.innerHTML = `min ${dayTemp.tempMin}`;
-  section.appendChild(minTemp);
-
-  const maxTemp = document.createElement("p");
-  maxTemp.id = "maxTemp";
-  maxTemp.innerHTML = `max ${dayTemp.tempMax}`;
-  section.appendChild(maxTemp);
-
   const inputDate = document.getElementById("inputDate");
   const inputFormattedDate = formatDate(new Date(inputDate.value));
 
@@ -110,11 +118,7 @@ const createWeatherView = (dayTemp) => {
   // ira mudar a cor do border de uma das divs
 
   if (inputFormattedDate === weatherFormatedDate) {
-    section.setAttribute(
-      "style",
-      "border-color: #158f8b;"
-    );
-    console.log(section);
+    section.setAttribute("style", "border-color: #158f8b;");
   }
 
   return section;
@@ -130,4 +134,14 @@ const formatDate = (date) => {
   return (
     date.getDate() + "/" + (1 + date.getMonth()) + "/" + date.getFullYear()
   );
+};
+
+const calculateDaysBetweenDates = (date1, date2) => {
+  // To calculate the time difference of two dates
+  const differenceInTime = date2.getTime() - date1.getTime();
+
+  // To calculate the no. of days between two dates
+  const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+
+  return differenceInDays;
 };
