@@ -50,7 +50,7 @@ function updateUI(weather) {
   //create (how log is the day for the travel?)
   const todayDate = new Date();
   const days = calculateDaysBetweenDates(todayDate, formattedDate); // days
-  date.innerHTML = `your travel is in ${Math.ceil(days)} days`;
+  date.innerHTML = `Your travel is in ${Math.ceil(days)} days`;
 
   if (days < 0) {
     date.innerHTML = `Your travel have already happend`;
@@ -59,7 +59,6 @@ function updateUI(weather) {
   showFutureTemperature(weather.futureTemp);
 
   destination.value = "";
-  startDate.value = "";
 }
 
 const showFutureTemperature = (futureTemp) => {

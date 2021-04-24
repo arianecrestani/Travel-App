@@ -87,7 +87,6 @@ const createWeatherDataFromJson = (dataJson) => {
   responseData.weatherDescription = dataJson.data[0].weather.description;
 };
 
-
 const getFutureWeather = async (city) => {
   const baseUrl = "http://api.weatherbit.io/v2.0/forecast/daily?";
   const apiKey = `${process.env.weatherbit_Api}`;
@@ -134,6 +133,7 @@ const getImagePlace = async (city) => {
     .then((response) => response.json())
     .then((json) => createPixabayDataFromJson(json));
 };
+
 const createPixabayDataFromJson = (dataJson) => {
   console.log("createPixabayDataFromJson");
   console.log(dataJson);
