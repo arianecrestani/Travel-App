@@ -1,3 +1,5 @@
+import * as DateHelper from "./date";
+
 /* Global Variables */
 
 const searchButton = document.getElementById("clickSearch");
@@ -49,7 +51,7 @@ function updateUI(weather) {
 
   //create (how log is the day for the travel?)
   const todayDate = new Date();
-  const days = calculateDaysBetweenDates(todayDate, formattedDate); // days
+  const days = DateHelper.calculateDaysBetweenDates(todayDate, formattedDate); // days
   date.innerHTML = `Your travel is in ${Math.ceil(days)} days`;
 
   if (days < 0) {
@@ -107,7 +109,7 @@ const createWeatherView = (dayTemp) => {
   section.appendChild(description);
 
   const weatherDate = new Date(dayTemp.date); //call paramenter dayTemp.date e criate new date
-  const weatherFormatedDate = formatDate(weatherDate);
+  const weatherFormatedDate = DateHelper.formatDate(weatherDate);
 
   const date = document.createElement("p");
   date.id = "dateFuture";
@@ -115,7 +117,7 @@ const createWeatherView = (dayTemp) => {
   section.appendChild(date);
 
   const inputDate = document.getElementById("inputDate");
-  const inputFormattedDate = formatDate(new Date(inputDate.value));
+  const inputFormattedDate = DateHelper.formatDate(new Date(inputDate.value));
 
   // quando eu coloco a data se a data estiver dentro dos proximos 16 dias
   // ira mudar a cor do border de uma das divs
@@ -132,20 +134,4 @@ function createDivSection() {
   section.className = "divSection";
   return section;
 }
-
-const formatDate = (date) => {
-  return (
-    date.getDate() + "/" + (1 + date.getMonth()) + "/" + date.getFullYear()
-  );
-};
-
-const calculateDaysBetweenDates = (date1, date2) => {
-  // To calculate the time difference of two dates
-  const differenceInTime = date2.getTime() - date1.getTime();
-  
-  // To calculate the no. of days between two dates
-  const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-  return differenceInDays 
-
-};
 
