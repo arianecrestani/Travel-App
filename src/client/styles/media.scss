@@ -1,6 +1,67 @@
-// @media only screen and (max-width: 900px) {
- 
-
-// }
+@media only screen and (max-width: 980px) {
+    #app {
+     
+      justify-content: center;
+    }
+    .placeImage {
+      width: 500px;
+    }
+    .container {
+      grid-template-columns: auto auto;
+      justify-content: center;
+    }
+    #entryHolder {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  @media only screen and (max-width: 380px) {
+    #app {
+      justify-content: center;
+    }
+  
+    .placeImage {
+      border: solid 2px #f9bdc0;
+      justify-content: center;
+      margin-top: 0px;
+    }
+    .container {
+      grid-template-columns: auto auto;
+      justify-content: center;
+    }
+    h1 {
+      font-size: 15px;
+    }
+    .inputInfo {
+      display: grid;
+      flex-direction: row;
+      color: #f9bdc0;
+      margin-top: 5px;
+      grid-gap: 10px;
+      justify-content: center;
+    }
+    #destination {
+      border-radius: 1px;
+      padding: 3px;
+    }
+    #inputDate {
+      border-radius: 1px;
+      padding: 3px;
+    }
+    #clickSearch {
+      border-radius: 1px;
+      padding: 3px;
+    }
+    .divSection {
+      padding: 3px;
+      width: 150px;
+      height: 193px;
+    }
+    #entryHolder {
+      display: flex;
+      flex-direction: column;
+    
+    }
+  }
 
 
