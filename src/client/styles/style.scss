@@ -13,12 +13,9 @@ body {
 }
 
 .placeImage {
-  margin-top: 30px;
-  width: 800px;
-  // position: static;
-  // height: fit-content;
+  margin-top: 60px;
+  width: 100%;
   background-size: 100%;
-  border: solid 2px #f9bdc0;
 }
 .inputInfo {
   display: flex;
@@ -66,12 +63,11 @@ h1 {
 }
 
 #entryHolder {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  width: 900px;
+  display: flex;
   color: #15b5b0;
   padding-top: 40px;
   padding-bottom: 40px;
+  justify-content: space-evenly;
 }
 .currentWeatherSection {
   margin-bottom: 20px;
@@ -89,7 +85,6 @@ h1 {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 20px;
-  width: 900px;
   margin-bottom: 30px;
 }
 
@@ -117,5 +112,3 @@ h1 {
   margin-top: -75px;
   font-size: 18px;
 }
-
-
