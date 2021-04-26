@@ -11,11 +11,10 @@ describe("Testing format Date", ()=>{
     test("fomatDate should be on this format",()=> {
         const date = new Date("2000.04.29");
         expect(formatDate(date)).toBe("29/4/2000");
-        const date = new Date("04.2010.29");
-        expect(formatDate(date)).toBe("05/5/2021");
+       
     })
-    })
-                
+                 
+})
 
 
 
