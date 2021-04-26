@@ -1,3 +1,1 @@
-
-<img src ="/client/styles/src/grafico.jpg">
-
+![flwochart](./src/client/styles/grafico.jpg)
