@@ -8,7 +8,9 @@ This graph so that you, reader, can understand the step by step of the line of r
 
  ## Development procedure
  
-The project is based on Express to provide a server where data is stored and retrievable by the app. To accomplish this, GET and POST server routes were provided for communication purposes with the app. The server retrieves and processes data from three different APIs: GeoNames, Weatherbit.io and Pixabay. The retrieved information is served via specific routes. The app retrieves the information and updates the user interface with the received data from the Express server. Error handling is provided to give meaningful feedback in case something goes wrong. Furthermore webpack is used to generate different bundles for production and development.
+The project is based on Express to provide a server where data is stored and retrievable by the app. To accomplish this, GET and POST server routes were provided for communication purposes with the app. 
+
+The server retrieves and processes data from three different APIs: GeoNames, Weatherbit.io and Pixabay. The retrieved information is served via specific routes. The app retrieves the information and updates the user interface with the received data from the Express server. Error handling is provided to give meaningful feedback in case something goes wrong. Furthermore webpack is used to generate different bundles for production and development.
 
 ## Features
 
@@ -16,6 +18,6 @@ The project is based on Express to provide a server where data is stored and r
 
 * If the destination date is within 16 days, the day of the destination date will shine on the screen
 
-* current temperature, maximum and minimum temperature of the destination.
+* Current temperature, maximum and minimum temperature of the destination.
 
-* how many days are left for the trip
+* How many days are left for the trip
