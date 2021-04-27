@@ -62,7 +62,7 @@ const createFutureWeatherDataFromJson = (dataJson) => {
 
   // percorrer o dataJson e criar uma list de temperaturas para os proximos dias.
   let futureTemp = [];
-  //pegando elementos do json mais espefificado
+  //get elements from json
   dataJson.data.forEach((element) => {
     // just geting needs value from Json
     const newElement = {
@@ -107,3 +107,4 @@ exports.getCurrentWeather = getCurrentWeather;
 exports.getFutureWeather = getFutureWeather;
 exports.getImagePlace = getImagePlace;
 exports.responseData = responseData;
+exports.createLatLngFromJson = createLatLngFromJson;

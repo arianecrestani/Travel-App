@@ -12,7 +12,7 @@ describe("Testing format Date", () => {
 });
 
 describe("Testing how many days ", () => {
-  test("diference between dates show one day", () => {
+  test("diference between dates day", () => {
     expect(
       calculateDaysBetweenDates(new Date("2000.04.29"), new Date("2000.04.30"))
     ).toBe(1);
