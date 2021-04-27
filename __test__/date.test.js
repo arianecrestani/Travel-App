@@ -1,8 +1,7 @@
 import {
   formatDate,
-  calculateDaysBetweenDates,
-} from "../src/client/js/date.js";
-
+  calculateDaysBetweenDates
+} from "../src/client/js/date";
 
 
 describe("Testing format Date", () => {
@@ -13,7 +12,7 @@ describe("Testing format Date", () => {
 });
 
 describe("Testing how many days ", () => {
-  test("fomatDate should be on this format", () => {
+  test("diference between dates show one day", () => {
     expect(
       calculateDaysBetweenDates(new Date("2000.04.29"), new Date("2000.04.30"))
     ).toBe(1);

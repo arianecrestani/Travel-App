@@ -1,18 +1,5 @@
 // import just updateUi 
-import { updateUI } from "./update";
-
-/* Global Variables */
-
-const searchButton = document.getElementById("clickSearch");
-const startDate = document.getElementById("inputDate");
-const destination = document.getElementById("destination");
-
-/* Function called by event */
-const generateButtonClick = () => {
-  postServerData().then((json) => updateUI(json));
-};
-
-searchButton.addEventListener("click", generateButtonClick);
+import { destination, startDate} from "./inputs"
 
 //1 pedido do site weathercity
 const postServerData = async () => {
@@ -29,3 +16,4 @@ const postServerData = async () => {
     body: JSON.stringify(body),
   }).then((response) => response.json());
 };
+export { postServerData }
