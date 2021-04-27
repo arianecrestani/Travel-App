@@ -13,10 +13,10 @@ To run the project node.js must be installed, then also webpack.
 
 ## Features
 
-* With the destination of the trip you can have the maximum and minimum temperature forecast for the next 16 days.
+- With the destination of the trip you can have the maximum and minimum temperature forecast for the next 16 days.
 
-* If the destination date is within 16 days, the day of the destination date will be highlight on the screen
+- If the destination date is within 16 days, the day of the destination date will be highlight on the screen
 
-* Current temperature, maximum and minimum temperature of the destination.
+- Current temperature, maximum and minimum temperature of the destination.
 
-* How many days are left for the trip
+- How many days are left for the trip
