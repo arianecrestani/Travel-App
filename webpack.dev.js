@@ -6,9 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   devtool: "source-map",
-  entry: {
-    main: path.resolve(__dirname, "./src/client/index.js"),
-  },
+  entry: "./src/client/index.js",
   output: {
     libraryTarget: "var",
     library: "Client",
@@ -24,11 +22,18 @@ module.exports = {
         test: /\.(scss|css)$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: {
+            outputPath: 'images',
+        },
+      },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, "./src/client/views/index.html"),
+      template: "./src/client/views/index.html",
       filename: "./index.html",
     }),
     new CleanWebpackPlugin({
