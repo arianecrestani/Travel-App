@@ -10,7 +10,7 @@ This graph so that you, reader, can understand the step by step of the line of r
 
 ## Get Up and Running
 
-To run the project node.js must be installed then run the following commands:
+To run the project node.js must be installed all depedencies then run the following commands:
 
 
 
