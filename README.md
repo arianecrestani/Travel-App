@@ -22,7 +22,7 @@ To run the project node.js must be installed all depedencies then run the follow
 - `npm install`
 - `npm run build-dev`
 - `npm run start` to server
-- this app runs on 8000
+- this app runs on port 8000
 - `npm run test` to make testing with jest
 
  ##### I also used Webpack to manage the dependencies
