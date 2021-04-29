@@ -7,7 +7,7 @@ This project is the final project for Udacity's Front End Web Developer Nanodegr
  
 This graph so that you, reader, can understand the step by step of the line of reasoning elaborated for this project which also consists of using the server and 3 Apis for this project.
 
-#### Apis 
+#### Api's 
 
 - Geonames
 - Weatherbit
