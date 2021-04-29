@@ -14,11 +14,11 @@ To run the project node.js must be installed then run the following commands:
 
 
 
-- ```npm install```
-- ```npm run``` build-prod
-- ```npm run``` start to start the app
-- this app runs on localhost:```8000```
-- npm run test to make testing with jest
+- `npm install`
+- `npm run build-dev`
+- `npm run start` to server
+- this app runs on http://localhost:8080/
+- `npm run test` to make testing with jest
 
 
 ![flwochart](./src/client/images/grafico.jpg)
