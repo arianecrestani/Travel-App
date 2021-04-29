@@ -25,7 +25,7 @@ To run the project node.js must be installed all depedencies then run the follow
 - this app runs on http://localhost:8080/
 - `npm run test` to make testing with jest
 
- #### Webpack to manage the dependencies
+ ##### used Webpack to manage the dependencies
 
 ![flwochart](./src/client/images/grafico.jpg)
 
