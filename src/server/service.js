@@ -9,10 +9,10 @@ const getGeonames = async (city) => {
 
   return await fetch(`${baseUrl}username=${apiKey}&placename=${city}`)
     .then((response) => response.json())
-    .then((json) => createLatLngFromJson(json)); // continuacao de criando uma URL
+    .then((json) => createLatLngFromJson(json)); // created a URL
 };
 
-// criar informacoes em json para o servidor
+// created info in json to server
 const createLatLngFromJson = (dataJson) => {
   console.log("createDataJsonGeonames");
   console.log(dataJson);
@@ -48,6 +48,8 @@ const createWeatherDataFromJson = (dataJson) => {
   responseData.weatherDescription = dataJson.data[0].weather.description;
 };
 
+/* Function to GET Web Geoname API Data*/
+
 const getFutureWeather = async (city) => {
   const baseUrl = "http://api.weatherbit.io/v2.0/forecast/daily?";
   const apiKey = `${process.env.weatherbit_Api}`;
@@ -60,7 +62,8 @@ const createFutureWeatherDataFromJson = (dataJson) => {
   console.log("createFutureWeatherDataFromJson");
   console.log(dataJson);
 
-  // percorrer o dataJson e criar uma list de temperaturas para os proximos dias.
+//going to dataJason and created a list of temperture for next days
+
   let futureTemp = [];
   //get elements from json
   dataJson.data.forEach((element) => {

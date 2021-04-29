@@ -1,7 +1,7 @@
 // import just updateUi 
 import { destination, startDate} from "./inputs"
 
-//1 pedido do site weathercity
+//order site weathercity
 const postServerData = async () => {
   const body = {
     destination: destination.value,

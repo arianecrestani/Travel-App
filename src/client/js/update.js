@@ -20,7 +20,7 @@ function updateUI(weather) {
   const formattedDate = new Date(inputDate.value);
   weatherDescription.innerHTML = weather.weatherDescription;
 
-  //create (how log is the day for the travel?)
+  //created (how log is the day for the travel?)
   const todayDate = new Date();
   const days = DateHelper.calculateDaysBetweenDates(todayDate, formattedDate); // days
   date.innerHTML = `Your travel is in ${Math.ceil(days)} days`;
@@ -90,14 +90,13 @@ const createWeatherView = (dayTemp) => {
   const inputDate = document.getElementById("inputDate");
   const inputFormattedDate = DateHelper.formatDate(new Date(inputDate.value));
 
-  // quando eu coloco a data se a data estiver dentro dos proximos 16 dias
-  // ira mudar a cor do border de uma das divs
+  // if date are into 16 days will be highlight of screem
 
   if (inputFormattedDate === weatherFormatedDate) {
     section.setAttribute("style", "border-color: #158f8b;");
   }
 
-  return section;
+  return section;   // changed border into div section
 };
 
 function createDivSection() {
