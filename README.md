@@ -10,7 +10,9 @@ This graph so that you, reader, can understand the step by step of the line of r
 
 ## Get Up and Running
 
-To run the project node.js must be installed, then also webpack.
+To run the project node.js must be installed then run the following commands:
+
+
 
 - ```npm install```
 - ```npm run``` build-prod
