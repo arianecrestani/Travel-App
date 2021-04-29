@@ -13,7 +13,7 @@ This graph so that you, reader, can understand the step by step of the line of r
 - Weatherbit
 - Pixabay
 
-#### webpack to manage the dependencies
+ Webpack to manage the dependencies
 
 ### Get Up and Running
 
