@@ -41,4 +41,3 @@ To run the project node.js must be installed all depedencies then run the follow
 
 - How many days are left for the trip
 
-![flwochart](./src/client/images/preview.jpg)
