@@ -7,7 +7,7 @@ This project is the final project for Udacity's Front End Web Developer Nanodegr
  
 This graph so that you, reader, can understand the step by step of the line of reasoning elaborated for this project which also consists of using the server and 3 Apis for this project.
 
-#### Apis 
+#### Api's 
 
 - Geonames
 - Weatherbit
@@ -40,3 +40,6 @@ To run the project node.js must be installed all depedencies then run the follow
 - Current temperature, maximum and minimum temperature of the destination.
 
 - How many days are left for the trip
+
+![flwochart](./src/client/images/Preview.jpg)
+
