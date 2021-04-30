@@ -14,7 +14,7 @@ function updateUI(weather) {
 
   imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
-  currentTemp.innerHTML = `${Math.ceil(weather.currentTemp)}°C`;
+  currentTemp.innerHTML = `Today ${Math.ceil(weather.currentTemp)}°C`;
   min_temp.innerHTML = `Min ${Math.ceil(weather.min_temp)}°C`;
   max_temp.innerHTML = `Max ${Math.ceil(weather.max_temp)}°C`;
   const formattedDate = new Date(inputDate.value);

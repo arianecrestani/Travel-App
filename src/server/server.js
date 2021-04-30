@@ -31,7 +31,7 @@ function setupEndPoint(app) {
     service.responseData.city = request.body.destination;
     console.log(request.body); // wiil get destionation, inputDate
     service.getGeonames(request.body.destination)
-      .then(() => service.getCurrentWeather(service.responseData.latCity, service.responseData.lngCity))
+      .then(() => service.getCurrentWeather(service.responseData.latCity, service.responseData.lngCity, service.responseData.city))
       .then(() => service.getFutureWeather(service.responseData.city))
       .then(() => service.getImagePlace(service.responseData.city))
       .then(() => response.send(service.responseData)); //send a response to client 

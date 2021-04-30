@@ -63,11 +63,17 @@ h1 {
 }
 
 #entryHolder {
-  display: flex;
+  display: grid;
   color: #15b5b0;
-  padding-top: 40px;
+  padding-top: 5px;
   padding-bottom: 40px;
   justify-content: space-evenly;
+  grid-gap: 25px;
+
+}
+#currentTemp{
+font-size: 30px;
+border-bottom: #f9bdc0;
 }
 .currentWeatherSection {
   margin-bottom: 20px;

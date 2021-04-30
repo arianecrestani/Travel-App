@@ -16,8 +16,10 @@ const getGeonames = async (city) => {
 const createLatLngFromJson = (dataJson) => {
   console.log("createDataJsonGeonames");
   console.log(dataJson);
-  if (dataJson.postalCodes === undefined) {
-    return {};
+
+  if (dataJson.postalCodes === undefined && dataJson.postalCodes.lenght === 0) {
+    console.log('oi')
+    return;
   }
   responseData.latCity = dataJson.postalCodes[0].lat;
   responseData.lngCity = dataJson.postalCodes[0].lng;
@@ -25,14 +27,14 @@ const createLatLngFromJson = (dataJson) => {
 
 //current weather Api
 
-const getCurrentWeather = async (lat, lng) => {
-  console.log(`lat: ${lat} lng: ${lng}`);
+const getCurrentWeather = async (lat, lng, city) => {
   const baseUrl = "http://api.weatherbit.io/v2.0/current?";
   const apiKey = `${process.env.weatherbit_Api}`;
 
-  return await fetch(
-    `${baseUrl}lat=${lat}&lon=${lng}&key=${apiKey}&include=minutely`
-  )
+
+  const url = `${baseUrl}lat=${lat}&lon=${lng}&key=${apiKey}&include=minutely&city=${city}`
+
+  return await fetch(url)
     .then((response) => response.json())
     .then((json) => createWeatherDataFromJson(json));
 };
@@ -40,7 +42,7 @@ const getCurrentWeather = async (lat, lng) => {
 const createWeatherDataFromJson = (dataJson) => {
   console.log("createWeatherDataFromJson");
   console.log(dataJson);
-
+ 
   responseData.currentTemp = dataJson.data[0].temp;
   responseData.min_temp = dataJson.data[0].min_temp;
   responseData.max_temp = dataJson.data[0].max_temp;
