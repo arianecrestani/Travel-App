@@ -40,3 +40,6 @@ To run the project node.js must be installed all depedencies then run the follow
 - Current temperature, maximum and minimum temperature of the destination.
 
 - How many days are left for the trip
+
+![flwochart](./src/client/images/Preview.jpg)
+
