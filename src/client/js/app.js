@@ -1,11 +1,8 @@
-// import just updateUi 
-import { destination, startDate} from "./inputs"
-
 //order site weathercity
-const postServerData = async () => {
+const postServerData = async (destination, startDate) => {
   const body = {
-    destination: destination.value,
-    startDate: startDate.value,
+    destination: destination,
+    startDate: startDate,
   };
   return fetch("http://localhost:8000/weathercity", {
     method: "POST",

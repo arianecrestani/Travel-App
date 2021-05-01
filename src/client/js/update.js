@@ -9,11 +9,13 @@ function updateUI(weather) {
   const min_temp = document.getElementById("min_temp");
   const max_temp = document.getElementById("max_temp");
   const date = document.getElementById("date");
+  const dateArrival = document.getElementById("dateArrival");
   const weatherDescription = document.getElementById("weatherDescription");
   const inputDate = document.getElementById("inputDate");
 
   imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
+  dateArrival.innerHTML =`${weather.dateArrival}`
   currentTemp.innerHTML = `Today ${Math.ceil(weather.currentTemp)}°C`;
   min_temp.innerHTML = `Min ${Math.ceil(weather.min_temp)}°C`;
   max_temp.innerHTML = `Max ${Math.ceil(weather.max_temp)}°C`;

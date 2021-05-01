@@ -1,6 +1,6 @@
 //dependecias
 
-const service = require("./service.js"); 
+const service = require("./service.js");
 
 var path = require("path");
 const { request } = require("express");
@@ -30,14 +30,20 @@ function setupEndPoint(app) {
   app.post("/weathercity", (request, response) => {
     service.responseData.city = request.body.destination;
     console.log(request.body); // wiil get destionation, inputDate
-    service.getGeonames(request.body.destination)
-      .then(() => service.getCurrentWeather(service.responseData.latCity, service.responseData.lngCity, service.responseData.city))
+    service
+      .getGeonames(request.body.destination)
+      .then(() =>
+        service.getCurrentWeather(
+          service.responseData.latCity,
+          service.responseData.lngCity,
+          service.responseData.city
+        )
+      )
       .then(() => service.getFutureWeather(service.responseData.city))
       .then(() => service.getImagePlace(service.responseData.city))
-      .then(() => response.send(service.responseData)); //send a response to client 
+      .then(() => response.send(service.responseData)); //send a response to client
   });
 }
-
 
 function listening() {
   console.log(server);

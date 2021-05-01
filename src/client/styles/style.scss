@@ -46,13 +46,23 @@ h1 {
   outline: none;
   color: #f9bdc0;
   padding: 10px;
+
+}
+#dateArrival {
+  border: solid;
+  border-radius: 5px;
+  border-color: #fbe698;
+  outline: none;
+  color: #f9bdc0;
+  padding: 10px;
+
 }
 ::-webkit-input-placeholder {
   color: #f9bdc0;
 }
 #clickSearch {
   border: solid;
-  border-radius: 5px;
+  border-radius: 29px;
   border-color: #fbe698;
   outline: none;
   color: #f9bdc0;

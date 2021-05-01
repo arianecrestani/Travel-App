@@ -1,18 +1,22 @@
-
 import { updateUI } from "./update";
 import { postServerData } from "./app";
-/* Global Variables */
 
 const searchButton = document.getElementById("clickSearch");
-const startDate = document.getElementById("inputDate");
-const destination = document.getElementById("destination");
 
 /* Function called by event */
 const generateButtonClick = () => {
-  postServerData().then((json) => updateUI(json));
+  const startDate = document.getElementById("inputDate");
+  const destination = document.getElementById("destination");
+
+  // verify if the destination, inputDate are not undefined
+  if (destination === "" || startDate === "") {
+    break;
+  }
+  postServerData(destination.value, startDate.value).then((json) =>
+    updateUI(json)
+  );
 };
 
 searchButton.addEventListener("click", generateButtonClick);
 
-
-export { generateButtonClick, startDate,  destination }
+export { generateButtonClick };
