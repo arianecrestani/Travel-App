@@ -11,6 +11,11 @@
   #entryHolder {
     flex-direction: column;
   }
+  .inputInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+  }
 }
 
 @media only screen and (max-width: 380px) {
@@ -28,7 +33,7 @@
   }
 
   h1 {
-    font-size: 15px;
+    font-size: 23px;
   }
 
   .inputInfo {

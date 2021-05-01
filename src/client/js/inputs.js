@@ -9,12 +9,11 @@ const generateButtonClick = () => {
   const destination = document.getElementById("destination");
 
   // verify if the destination, inputDate are not undefined
-  if (destination === "" || startDate === "") {
-    break;
+  if (destination.value !== "" && startDate.value !== "") {
+    postServerData(destination.value, startDate.value).then((json) =>
+      updateUI(json)
+    );
   }
-  postServerData(destination.value, startDate.value).then((json) =>
-    updateUI(json)
-  );
 };
 
 searchButton.addEventListener("click", generateButtonClick);

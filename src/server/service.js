@@ -9,7 +9,8 @@ const getGeonames = async (city) => {
 
   return await fetch(`${baseUrl}username=${apiKey}&placename=${city}`)
     .then((response) => response.json())
-    .then((json) => createLatLngFromJson(json)); // created a URL
+    .then((json) => createLatLngFromJson(json));
+    
 };
 
 // created info in json to server
@@ -17,13 +18,17 @@ const createLatLngFromJson = (dataJson) => {
   console.log("createDataJsonGeonames");
   console.log(dataJson);
 
-  if (dataJson.postalCodes === undefined || dataJson.postalCodes.lenght === 0) {
-    console.log("oi")
+
+
+
+  if (dataJson.postalCodes === undefined || dataJson.postalCodes.lenght === null) {
+    console.log("dd")
     return responseData; 
   }
   responseData.latCity = dataJson.postalCodes[0].lat;
   responseData.lngCity = dataJson.postalCodes[0].lng;
   return responseData;
+  
 };
 
 //current weather Api
@@ -31,8 +36,6 @@ const createLatLngFromJson = (dataJson) => {
 const getCurrentWeather = async (lat, lng, city) => {
   const baseUrl = "http://api.weatherbit.io/v2.0/current?";
   const apiKey = `${process.env.weatherbit_Api}`;
-
-
   const url = `${baseUrl}lat=${lat}&lon=${lng}&key=${apiKey}&include=minutely&city=${city}`
 
   return await fetch(url)
