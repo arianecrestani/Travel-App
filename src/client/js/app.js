@@ -11,6 +11,8 @@ const postServerData = async (destination, startDate) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 };
-export { postServerData }
+export { postServerData };

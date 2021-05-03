@@ -10,6 +10,7 @@ const getGeonames = async (city) => {
   return await fetch(`${baseUrl}username=${apiKey}&placename=${city}`)
     .then((response) => response.json())
     .then((json) => createLatLngFromJson(json));
+
     
 };
 
@@ -17,13 +18,13 @@ const getGeonames = async (city) => {
 const createLatLngFromJson = (dataJson) => {
   console.log("createDataJsonGeonames");
   console.log(dataJson);
+ 
 
 
-
-
-  if (dataJson.postalCodes === undefined || dataJson.postalCodes.lenght === null) {
+  if (dataJson.postalCodes === undefined || dataJson.postalCodes.lenght === 0) {
     console.log("dd")
-    return responseData; 
+    return responseData;
+  
   }
   responseData.latCity = dataJson.postalCodes[0].lat;
   responseData.lngCity = dataJson.postalCodes[0].lng;

@@ -1,4 +1,4 @@
-import { updateUI } from "./update";
+import { updateUI, showError } from "./update";
 import { postServerData } from "./app";
 
 const searchButton = document.getElementById("clickSearch");
@@ -10,9 +10,13 @@ const generateButtonClick = () => {
 
   // verify if the destination, inputDate are not undefined
   if (destination.value !== "" && startDate.value !== "") {
-    postServerData(destination.value, startDate.value).then((json) =>
-      updateUI(json)
-    );
+    postServerData(destination.value, startDate.value).then((json) => {
+      if (json.error) {
+        showError();
+      } else {
+        updateUI(json);
+      }
+    });
   }
 };
 

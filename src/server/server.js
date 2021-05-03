@@ -28,6 +28,7 @@ function setupEndPoint(app) {
   });
 
   app.post("/weathercity", (request, response) => {
+
     service.responseData.city = request.body.destination;
     console.log(request.body); // wiil get destionation, inputDate
     service
@@ -41,8 +42,11 @@ function setupEndPoint(app) {
       )
       .then(() => service.getFutureWeather(service.responseData.city))
       .then(() => service.getImagePlace(service.responseData.city))
-      .then(() => response.send(service.responseData)); //send a response to client
+      .then(() => response.send(service.responseData))
+      .catch((error) => response.status(400).json({ error: error.toString()})); //send a response to client
+        
   });
+
 }
 
 function listening() {

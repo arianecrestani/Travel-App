@@ -15,7 +15,7 @@ function updateUI(weather) {
 
   imagePlace.src = weather.imagePlace;
   weatherCurrentIcon.src = `https://www.weatherbit.io/static/img/icons/${weather.weatherCurrentIcon}.png`;
-  dateArrival.innerHTML =`${weather.dateArrival}`
+  dateArrival.innerHTML = `${weather.dateArrival}`;
   currentTemp.innerHTML = `Today ${Math.ceil(weather.currentTemp)}°C`;
   min_temp.innerHTML = `Min ${Math.ceil(weather.min_temp)}°C`;
   max_temp.innerHTML = `Max ${Math.ceil(weather.max_temp)}°C`;
@@ -35,6 +35,11 @@ function updateUI(weather) {
 
   destination.value = "";
 }
+
+const showError = () => {
+  const newMensage = document.getElementsByTagName("h1")[0];
+  newMensage.innerHTML = `The location was not found`;
+};
 
 const showFutureTemperature = (futureTemp) => {
   const container = document.getElementsByClassName("container")[0];
@@ -98,7 +103,7 @@ const createWeatherView = (dayTemp) => {
     section.setAttribute("style", "border-color: #158f8b;");
   }
 
-  return section;   // changed border into div section
+  return section; // changed border into div section
 };
 
 function createDivSection() {
@@ -107,4 +112,4 @@ function createDivSection() {
   return section;
 }
 
-export { updateUI };
+export { updateUI, showError };
