@@ -37,6 +37,10 @@ function updateUI(weather) {
 }
 
 const showError = () => {
+  const imageNotFound = document.getElementsByTagName('img')[0];
+  imageNotFound.src = `./src/client/images/notFound.jpg`;
+  imageNotFound.setAttribute("style", "width: 50%")
+
   const newMensage = document.getElementsByTagName("h1")[0];
   newMensage.innerHTML = `The location was not found`;
 };
