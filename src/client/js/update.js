@@ -1,7 +1,6 @@
 import * as DateHelper from "./date";
 
 function updateUI(weather) {
-  console.log(weather);
 
   const imagePlace = document.getElementsByClassName("placeImage")[0];
   const weatherCurrentIcon = document.getElementById("weatherCurrentIcon");
@@ -34,6 +33,7 @@ function updateUI(weather) {
   showFutureTemperature(weather.futureTemp);
 
   destination.value = "";
+
 }
 
 const showError = () => {
